@@ -7,7 +7,7 @@
 
 ## 🔨 Instruções de uso
 
-1. Instale o banco de dados PostgreSQL.
+1. Instale o banco de dados PostgreSQL e coloque a senha **mark123**.
 2. Crie o banco de dados com o nome **biblioteca**.
 3. Restaure o backup que se encontra na pasta **Backup**.
 4. A partir do executável que se encontra na pasta dist, abra o programa **Biblioteca.jar**.
