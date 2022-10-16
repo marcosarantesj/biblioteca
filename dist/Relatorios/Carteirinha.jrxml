@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CarteirinhaModeloGrande" language="groovy" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     cadleitores.`Codigo` AS cadleitores_Codigo,
+     cadleitores.`NomedoLeitor` AS cadleitores_NomedoLeitor,
+     cadbiblioteca.`nome` AS cadbiblioteca_nome,
+     cadbiblioteca.`frase` AS cadbiblioteca_frase,
+     cadleitores.`DatadeNasc` AS cadleitores_DatadeNasc,
+     cadleitores.`Endereco` AS cadleitores_Endereco,
+     cadleitores.`Cidade` AS cadleitores_Cidade,
+     cadleitores.`UF` AS cadleitores_UF,
+     cadleitores.`Telefone` AS cadleitores_Telefone,
+     cadleitores.`Bairro` AS cadleitores_Bairro,
+     cadleitores.`NumerodaCasa` AS cadleitores_NumerodaCasa
+FROM
+     `cadleitores` cadleitores,
+     `cadbiblioteca` cadbiblioteca]]>
+	</queryString>
+	<field name="cadleitores_Codigo" class="java.lang.Integer"/>
+	<field name="cadleitores_NomedoLeitor" class="java.lang.String"/>
+	<field name="cadbiblioteca_nome" class="java.lang.String"/>
+	<field name="cadbiblioteca_frase" class="java.lang.String"/>
+	<field name="cadleitores_DatadeNasc" class="java.sql.Date"/>
+	<field name="cadleitores_Endereco" class="java.lang.String"/>
+	<field name="cadleitores_Cidade" class="java.lang.String"/>
+	<field name="cadleitores_UF" class="java.lang.String"/>
+	<field name="cadleitores_Telefone" class="java.lang.String"/>
+	<field name="cadleitores_Bairro" class="java.lang.String"/>
+	<field name="cadleitores_NumerodaCasa" class="java.lang.Long"/>
+	<group name="cadleitores_Codigo">
+		<groupExpression><![CDATA[$F{cadleitores_Codigo}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="272" height="36"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Carteirinha do leitor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="163" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="248" height="155" backcolor="#D3EEEE"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="7" y="22" width="167" height="15"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cadbiblioteca_frase}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="7" width="167" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cadbiblioteca_nome}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement stretchType="RelativeToTallestObject" x="187" y="8" width="54" height="57"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Biblioteca\\RELATORIOS\\" + new java.lang.String(
+  new java.text.DecimalFormat("0000000000").format(
+    new java.lang.Double($F{cadleitores_Codigo}.doubleValue() )
+    )
+  )
+ + ".jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="7" y="68" width="234" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cadleitores_NomedoLeitor}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement stretchType="RelativeToTallestObject" x="7" y="113" width="111" height="36"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false" barWidth="0" barHeight="0">
+					<jr:codeExpression><![CDATA[new java.lang.String(
+  new java.text.DecimalFormat("0000000000").format(
+    new java.lang.Double($F{cadleitores_Codigo}.doubleValue() )
+    )
+  )]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="174" y="135" width="54" height="14"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="137" y="135" width="37" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Emissão:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="88" width="103" height="20"/>
+				<textElement/>
+				<text><![CDATA[Data de Nascimento:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="110" y="88" width="77" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{cadleitores_DatadeNasc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="7" y="37" width="167" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cadleitores_Endereco} + ", " + $F{cadleitores_NumerodaCasa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="137" y="113" width="37" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="174" y="113" width="67" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cadleitores_Telefone}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="7" y="51" width="167" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cadleitores_Bairro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="5" splitType="Stretch"/>
+	</summary>
+</jasperReport>

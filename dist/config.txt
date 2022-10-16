@@ -1,0 +1,3 @@
+[TipoDB]PostgreSQL
+[ServerHost]localhost
+[Relatorios]Relatorios\

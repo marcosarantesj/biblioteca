@@ -1,0 +1,3 @@
+[TipoDB]PostgreSQL
+[ServerHost]localhost
+[Relatorios]C:\Users\MARK\Documents\NetBeansProjects\Biblioteca\Relatorios\
